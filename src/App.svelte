@@ -11,7 +11,7 @@
   });
 
   async function fetchData() {
-    data = [];
+    var tmpdata = [];
 
     const response = await fetch("https://www.volby.cz/pls/prez2023/vysledky");
     const text = await response.text();
@@ -33,18 +33,18 @@
       var prijmeni = x.getAttribute("PRIJMENI");
       var procento = x.getAttribute("HLASY_PROC_1KOLO");
 
-      data.push({
+      tmpdata.push({
         jmeno: jmeno + " " + prijmeni,
         procento: parseFloat(procento),
       });
 
-      data.sort((a, b) => {
+      tmpdata.sort((a, b) => {
         if (a.procento < b.procento) return 1;
         if (a.procento > b.procento) return -1;
         return 0; // No sorting
       });
 
-      data = data; // this fixes updating
+      data = tmpdata; // this fixes updating
     }
     console.log(data);
   }
