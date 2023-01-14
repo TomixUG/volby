@@ -4,7 +4,11 @@
   var data = [];
   var finishedPer;
 
-  onMount(fetchData);
+  onMount(() => {
+    fetchData();
+
+    setInterval(fetchData, 5000);
+  });
 
   async function fetchData() {
     data = [];
