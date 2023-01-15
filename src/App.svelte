@@ -15,7 +15,7 @@
 
     const response = await fetch("https://www.volby.cz/pls/prez2023/vysledky");
     const text = await response.text();
-    var xmlDoc = new DOMParser().parseFromString(text, "text/xml");
+    const xmlDoc = new DOMParser().parseFromString(text, "text/xml");
 
     var d = xmlDoc
       .getElementsByTagName("CR")[0]
