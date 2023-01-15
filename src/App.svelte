@@ -1,8 +1,8 @@
 <script>
   import { onMount } from "svelte";
 
-  var data = [];
-  var finishedPer;
+  let data = [];
+  let finishedPer;
 
   onMount(() => {
     fetchData();
@@ -11,27 +11,27 @@
   });
 
   async function fetchData() {
-    var tmpdata = [];
+    let tmpdata = [];
 
     const response = await fetch("https://www.volby.cz/pls/prez2023/vysledky");
     const text = await response.text();
     const xmlDoc = new DOMParser().parseFromString(text, "text/xml");
 
-    var d = xmlDoc
+    let d = xmlDoc
       .getElementsByTagName("CR")[0]
       .getElementsByTagName("UCAST")[0]
       .getAttribute("OKRSKY_ZPRAC_PROC");
     finishedPer = d;
 
-    var z = xmlDoc
+    let z = xmlDoc
       .getElementsByTagName("CR")[0]
       .getElementsByTagName("KANDIDAT");
 
-    for (var k = 0; k < z.length; k++) {
-      var x = z[k];
-      var jmeno = x.getAttribute("JMENO");
-      var prijmeni = x.getAttribute("PRIJMENI");
-      var procento = x.getAttribute("HLASY_PROC_1KOLO");
+    for (let k = 0; k < z.length; k++) {
+      let x = z[k];
+      let jmeno = x.getAttribute("JMENO");
+      let prijmeni = x.getAttribute("PRIJMENI");
+      let procento = x.getAttribute("HLASY_PROC_1KOLO");
 
       tmpdata.push({
         jmeno: jmeno + " " + prijmeni,
