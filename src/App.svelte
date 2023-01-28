@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
 
   var data = [];
-  var finishedPer;
+  var finishedPer = "Loading...";
 
   onMount(() => {
     fetchData();
