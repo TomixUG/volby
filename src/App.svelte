@@ -19,7 +19,7 @@
 
     var d = xmlDoc
       .getElementsByTagName("CR")[0]
-      .getElementsByTagName("UCAST")[0]
+      .getElementsByTagName("UCAST")[1]
       .getAttribute("OKRSKY_ZPRAC_PROC");
     finishedPer = d;
 
@@ -31,11 +31,13 @@
       var x = z[k];
       var jmeno = x.getAttribute("JMENO");
       var prijmeni = x.getAttribute("PRIJMENI");
-      var procento = x.getAttribute("HLASY_PROC_1KOLO");
+      var procento = parseFloat(x.getAttribute("HLASY_PROC_2KOLO"));
+
+      if (Number.isNaN(procento)) continue;
 
       tmpdata.push({
         jmeno: jmeno + " " + prijmeni,
-        procento: parseFloat(procento),
+        procento: procento,
       });
 
       tmpdata.sort((a, b) => {
